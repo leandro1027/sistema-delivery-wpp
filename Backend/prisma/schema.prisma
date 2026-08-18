@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum StatusPedido {
+  PENDENTE
+  PREPARANDO
+  SAIU_ENTREGA
+  ENTREGUE
+  CANCELADO
+}
+
+model UsuarioAdmin {
+  id           String   @id @default(uuid())
+  nome         String
+  email        String   @unique
+  senha        String
+  ativo        Boolean  @default(true)
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+}
+
+model Cliente {
+  id        String   @id @default(uuid())
+  telefone  String   @unique
+  nome      String?
+  endereco  String?
+  pedidos   Pedido[]
+  criadoEm  DateTime @default(now())
+}
+
+model Categoria {
+  id       String    @id @default(uuid())
+  nome     String
+  ordem    Int       @default(0)
+  produtos Produto[]
+  criadoEm DateTime  @default(now())
+}
+
+model Produto {
+  id           String       @id @default(uuid())
+  nome         String
+  descricao    String?
+  preco        Float
+  imagemUrl    String?
+  ativo        Boolean      @default(true)
+  categoriaId  String?
+  categoria    Categoria?   @relation(fields: [categoriaId], references: [id])
+  itensPedido  ItemPedido[]
+  criadoEm     DateTime     @default(now())
+  atualizadoEm DateTime     @updatedAt
+}
+
+model Pedido {
+  id              String       @id @default(uuid())
+  clienteId       String
+  cliente         Cliente      @relation(fields: [clienteId], references: [id])
+  status          StatusPedido @default(PENDENTE)
+  total           Float
+  metodoPagamento String?
+  trocoPara       Float?
+  itens           ItemPedido[]
+  criadoEm        DateTime     @default(now())
+  atualizadoEm    DateTime     @updatedAt
+}
+
+model ItemPedido {
+  id            String  @id @default(uuid())
+  pedidoId      String
+  pedido        Pedido  @relation(fields: [pedidoId], references: [id], onDelete: Cascade)
+  produtoId     String
+  produto       Produto @relation(fields: [produtoId], references: [id])
+  quantidade    Int
+  precoUnitario Float
+  observacao    String?
+}
+
+model ConfiguracaoLoja {
+  id           String   @id @default(uuid())
+  nome         String
+  logoUrl      String?
+  bannerUrl    String?
+  telefone     String?
+  aberto       Boolean  @default(true)
+  atualizadoEm DateTime @updatedAt
+}
