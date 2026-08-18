@@ -8,3 +8,6 @@ npx prisma init
 # Instalar o Baileys e tipos do Multer
 npm install @whiskeysockets/baileys qrcode-terminal
 npm install -D @types/qrcode-terminal @types/multer
+
+# Instalar o pacote de arquivos estáticos do NestJS
+npm install @nestjs/serve-static
