@@ -18,3 +18,13 @@ npm install -D @types/pg
 
 # Instalar iblioteca de log Pino para o Baileys
 npm install pino
+
+
+-- Frontend --
+
+# Inicializar o shadcn/ui
+npx shadcn-ui@latest init
+
+# Instalar o gerenciador de estado e os componentes da interface
+npm install zustand
+c

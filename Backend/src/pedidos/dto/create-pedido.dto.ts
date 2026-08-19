@@ -8,6 +8,6 @@ export class CreateItemPedidoDto {
 export class CreatePedidoDto {
   clienteId!: string;
   total!: number;
-  formaPagamento!: string;
+  metodoPagamento!: string;
   itens!: CreateItemPedidoDto[]; 
 }
