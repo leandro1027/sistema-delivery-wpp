@@ -11,3 +11,10 @@ npm install -D @types/qrcode-terminal @types/multer
 
 # Instalar o pacote de arquivos estáticos do NestJS
 npm install @nestjs/serve-static
+
+# Instalar adatapter Prisma Postgres - pacote pg e o adaptador oficial do Prisma para injetar no PrismaService
+npm install pg @prisma/adapter-pg
+npm install -D @types/pg 
+
+# Instalar iblioteca de log Pino para o Baileys
+npm install pino

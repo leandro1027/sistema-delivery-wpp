@@ -7,6 +7,9 @@ import { CategoriasModule } from './categorias/categorias.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UploadModule } from './upload/upload.module';
 import { ProdutosModule } from './produtos/produtos.module';
+import { ClientesModule } from './clientes/clientes.module';
+import { PedidosModule } from './pedidos/pedidos.module';
+import { WhatsappModule } from './whatsapp/whatsapp.module';
 
 @Module({
   imports: [
@@ -19,6 +22,9 @@ import { ProdutosModule } from './produtos/produtos.module';
     PrismaModule,
     UploadModule,
     ProdutosModule,
+    ClientesModule,
+    PedidosModule,
+    WhatsappModule,
   ],
   controllers: [AppController],
   providers: [AppService],
